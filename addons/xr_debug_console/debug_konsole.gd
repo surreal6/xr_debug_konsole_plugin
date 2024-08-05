@@ -2,9 +2,9 @@ extends Node
 
 #fixed konsole
 @export var fixed_konsole : Node3D
-@export var fixed_konsole_z_offset : float = -2
-@export var fixed_konsole_x_offset : float = 0
+@export var fixed_konsole_x_offset : float = -0.5
 @export var fixed_konsole_y_offset : float = 0.0
+@export var fixed_konsole_z_offset : float = -2
 # fixed debug label style
 @export var fixed_font_size : int = 8
 @export var fixed_outline_size : int = 0
@@ -15,9 +15,9 @@ extends Node
 
 #float konsole
 @export var float_konsole : Node3D
-@export var float_konsole_z_offset : float = -1.0
-@export var float_konsole_x_offset : float = 0
+@export var float_konsole_x_offset : float = 0.5
 @export var float_konsole_y_offset : float = 0
+@export var float_konsole_z_offset : float = -1.5
 # float debug label style
 @export var float_font_size : int = 16
 @export var float_outline_size : int = 3
@@ -88,8 +88,8 @@ func add_label(msg, fixed, delay = float_default_duration):
 
 	debug_label.global_position = fixed_konsole.global_position
 	if !fixed:
-		debug_label.global_position.x += float_konsole_x_offset
-		debug_label.global_position.z += float_konsole_z_offset
+		debug_label.position.x += float_konsole_x_offset - fixed_konsole_x_offset
+		debug_label.position.z += float_konsole_z_offset - fixed_konsole_z_offset
 		debug_label.global_position.y = float_konsole.global_position.y + float_konsole_y_offset
 
 	debug_label.connect("autodestroy_label", on_label_autodestroy)

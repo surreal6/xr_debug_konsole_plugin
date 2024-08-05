@@ -6,14 +6,18 @@
 [node name="main" type="Node3D"]
 script = ExtResource("1_4vvcx")
 
+[node name="StartXR" parent="." instance=ExtResource("1_oyo8b")]
+
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
 autostart = true
 
-[node name="StartXR" parent="." instance=ExtResource("1_oyo8b")]
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

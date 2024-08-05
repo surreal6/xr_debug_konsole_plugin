@@ -18,3 +18,6 @@ func _on_timer_timeout() -> void:
 		else:
 			DK.print_float("this is a floating debug message", $XROrigin3D/XRCamera3D)
 	counter += 1
+
+func _on_timer_2_timeout() -> void:
+	DK.print_float("another floating debug message", $XROrigin3D/XRCamera3D, 5)
