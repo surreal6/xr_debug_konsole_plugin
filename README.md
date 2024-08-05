@@ -2,7 +2,7 @@
 
 A Godot plugin to print Label3D messages in front of the XRCamera
 
-!(screenshots/xr_debug_konsole_plugin.mp4)[screenshots/xr_debug_konsole_plugin.mp4]
+![screenshots/xr_debug_konsole_plugin.mp4](screenshots/xr_debug_konsole_plugin.mp4)
 
 
 ## USAGE
