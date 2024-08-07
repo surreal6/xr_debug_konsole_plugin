@@ -2,6 +2,8 @@
 
 A Godot plugin to print Label3D messages in front of the XRCamera
 
+If you like 'tracing debugging', 'print debugging' or whatever name you prefer to do debugging with print statements inserted in your code, this will help you not to be taking off your XR headset to check the console.
+
 ![screenshots/xr_debug_konsole_plugin.gif](screenshots/xr_debug_konsole_plugin.gif)
 
 
