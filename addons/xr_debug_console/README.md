@@ -2,7 +2,7 @@
 
 A Godot plugin to print Label3D messages in front of the XRCamera
 
-!(screenshots/xr_debug_konsole_plugin.mp4)[screenshots/xr_debug_konsole_plugin.mp4]
+![screenshots/xr_debug_konsole_plugin.gif](screenshots/xr_debug_konsole_plugin.gif)
 
 
 ## USAGE
@@ -35,8 +35,7 @@ Use autoclean to define max number of fixed lines
 
 ## Floating konsole variables:
 	
-Float labels appear in fixed konsole position + float offset 
-(except y value, that starts in XROrigin)
+Use this offsets to define the position of the fixed konsole based on the fixed konsole
 	
 	DK.float_konsole_z_offset : float
 	DK.float_konsole_x_offset : float
@@ -52,3 +51,7 @@ Use this properties to setup floating label styles
 Use this to change default duration for floating labels 
 
 	DK.float_default_duration : int
+
+Use this to change floating labels velocity
+
+	DK.float_labels_velocity : float
