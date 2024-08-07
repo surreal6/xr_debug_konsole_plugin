@@ -21,6 +21,9 @@ func _ready() -> void:
 		add_child(timer)
 		timer.wait_time= delay
 		timer.start(timer.wait_time)
+		add_to_group("float_debug_labels")
+	else:
+		add_to_group("fixed_debug_labels")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,7 +33,7 @@ func _process(delta: float) -> void:
 		var value = remap(counter, 0, delay, 1, 0)
 		modulate.a = value
 		outline_modulate.a = value
-		position.y += delta * 0.5
+		position.y += delta * DK.float_labels_velocity
 
 
 func update_styles() -> void:
