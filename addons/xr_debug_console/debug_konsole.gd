@@ -30,7 +30,7 @@ extends Node
 
 @export var float_labels_velocity : float = 0.5
 
-var current_camera : XRCamera3D
+@export var current_camera : XRCamera3D: set = set_current_camera
 
 var last_float_label : DebugLabel3D
 
@@ -42,6 +42,11 @@ func _process(_delta: float) -> void:
 	if is_instance_valid(current_camera):
 		var pos = current_camera.global_position.y + fixed_konsole_y_offset
 		fixed_konsole.global_position.y = pos
+
+
+func set_current_camera(camera) -> void:
+	current_camera = camera
+	setup_konsoles()
 
 
 func setup_konsoles():
@@ -57,20 +62,20 @@ func setup_konsoles():
 	current_camera.get_parent().add_child(float_konsole)
 
 
-func print_fixed(msg, camera):
-	if current_camera != camera:
-		current_camera = camera
-		setup_konsoles()
-	print("k$: %s" % msg)
-	add_label(msg, true)
+func print_fixed(msg):
+	if is_instance_valid(current_camera):
+		print("k$: %s" % msg)
+		add_label(msg, true)
+	else:
+		print("k$: ERROR, invalid camera")
 
 
-func print_float(msg, camera, delay = float_default_duration):
-	if current_camera != camera:
-		current_camera = camera
-		setup_konsoles()
-	print("k$f: %s" % msg)
-	add_label(msg, false, delay)
+func print_float(msg, delay = float_default_duration):
+	if is_instance_valid(current_camera):
+		print("k$f: %s" % msg)
+		add_label(msg, false, delay)
+	else:
+		print("k$: ERROR, invalid camera")
 
 
 func move_up_all_children(fixed, v_size = 0.05):

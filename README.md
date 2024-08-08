@@ -9,11 +9,20 @@ If you like 'tracing debugging', 'print debugging' or whatever name you prefer t
 
 ## USAGE
 
-	DK.print_fixed(msg, camera)
+* First define your current camera with
 
-	DK.print_float(msg, camera, delay)
+	DK.set_current_camera(path_to_xr_camera)
+	
+* Then you can use the following commands
+
+	DK.print_fixed(msg)
+
+	DK.print_float(msg, delay)
 
 	DK.clean_all_in_fixed_konsole()
+
+> **Warning**
+If you are using some kind of staging system, be careful to set current camera again if you change your current one.
 
 
 ## Fixed konsole variables:
