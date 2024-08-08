@@ -64,18 +64,18 @@ func setup_konsoles():
 
 func print_fixed(msg):
 	if is_instance_valid(current_camera):
-		print("k$: %s" % msg)
 		add_label(msg, true)
 	else:
 		print("k$: ERROR, invalid camera")
+	print("k$: %s" % msg)
 
 
 func print_float(msg, delay = float_default_duration):
 	if is_instance_valid(current_camera):
-		print("k$f: %s" % msg)
 		add_label(msg, false, delay)
 	else:
 		print("k$: ERROR, invalid camera")
+	print("k$f: %s" % msg)
 
 
 func move_up_all_children(fixed, v_size = 0.05):
