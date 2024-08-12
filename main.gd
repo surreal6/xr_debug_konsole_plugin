@@ -2,6 +2,9 @@ extends Node3D
 
 var counter = 0
 
+func _ready() -> void:
+	pass
+
 func _on_timer_timeout() -> void:
 	if counter == 7:
 		DK.clean_all_in_fixed_konsole()
