@@ -30,7 +30,7 @@ extends Node
 
 @export var float_labels_velocity : float = 0.5
 
-@export var current_camera : XRCamera3D: set = set_current_camera
+@export var current_camera : Camera3D: set = set_current_camera
 
 var last_float_label : DebugLabel3D
 
