@@ -4,27 +4,27 @@ extends Node
 @export var fixed_konsole : Node3D
 # this offset is relative to camera position
 @export var fixed_konsole_x_offset : float = -0.5
-@export var fixed_konsole_y_offset : float = 0.0
+@export var fixed_konsole_y_offset : float = 0.4
 @export var fixed_konsole_z_offset : float = -2
 # fixed debug label style
 @export var fixed_font_size : int = 8
 @export var fixed_outline_size : int = 0
-@export var fixed_modulate : Color = Color("black")
+@export var fixed_modulate : Color = Color("pink")
 @export var fixed_outline_modulate : Color = Color("white")
 
-@export var autoclean : int = 3
+@export var autoclean : int = 10
 
 #float konsole
 @export var float_konsole : Node3D
 # this offset is relative to fixed konsole position
 @export var float_label_x_offset : float = 0.5
-@export var float_label_y_offset : float = 0.0
+@export var float_label_y_offset : float = 1.0
 @export var float_label_z_offset : float = 0.2
 # float debug label style
 @export var float_font_size : int = 16
 @export var float_outline_size : int = 3
 @export var float_modulate : Color = Color("white")
-@export var float_outline_modulate : Color = Color("black")
+@export var float_outline_modulate : Color = Color("red")
 
 @export var float_default_duration : int = 10
 
@@ -33,6 +33,8 @@ extends Node
 @export var current_camera : Camera3D: set = set_current_camera
 
 var last_float_label : DebugLabel3D
+
+var show_konsoles = true
 
 
 func _process(_delta: float) -> void:
@@ -63,6 +65,9 @@ func setup_konsoles():
 
 
 func print_fixed(msg):
+	if not show_konsoles:
+		return
+
 	if is_instance_valid(current_camera):
 		add_label(msg, true)
 	else:
@@ -71,6 +76,9 @@ func print_fixed(msg):
 
 
 func print_float(msg, delay = float_default_duration):
+	if not show_konsoles:
+		return
+
 	if is_instance_valid(current_camera):
 		add_label(msg, false, delay)
 	else:
@@ -126,14 +134,21 @@ func add_label(msg, fixed, delay = float_default_duration):
 func clean_one_in_fixed_konsole() -> void:
 	if is_instance_valid(fixed_konsole):
 		var labels = get_tree().get_nodes_in_group("fixed_debug_labels")
+		if not labels:
+			return
+
 		var node = labels[0]
-		node.disconnect("autodestroy_label", on_label_autodestroy)
+		if node.autodestroy_label.is_connected(on_label_autodestroy):
+			node.disconnect("autodestroy_label", on_label_autodestroy)
 		node.queue_free()
 
 
 func clean_all_in_fixed_konsole() -> void:
 	if is_instance_valid(fixed_konsole):
 		var labels = get_tree().get_nodes_in_group("fixed_debug_labels")
+		if not labels:
+			return
+
 		for node in labels:
 			node.disconnect("autodestroy_label", on_label_autodestroy)
 			node.queue_free()
@@ -142,3 +157,9 @@ func clean_all_in_fixed_konsole() -> void:
 func on_label_autodestroy(debug_label):
 	debug_label.disconnect("autodestroy_label", on_label_autodestroy)
 	debug_label.queue_free()
+
+
+func set_konsoles_visibility(value):
+	show_konsoles = value
+	float_konsole.visible = value
+	fixed_konsole.visible = value
